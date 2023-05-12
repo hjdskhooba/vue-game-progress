@@ -1,45 +1,65 @@
 <script setup>
-import { onMounted, ref } from "vue";
-const value = ref(20);
-const labelVideo = ref(0);
-const video = ref("");
+import { computed, onMounted, reactive, ref, watch } from "vue";
+const inputValue = ref(200);
+const max = ref(1200);
 
-const handleTimeupdate = () => {
-  console.log("Value changed");
-  const percent = Math.floor(
-    (1000 / video.value.duration) * video.value.currentTime
-  );
-  value.value = percent;
-  labelVideo.value = percent;
-};
+const bestResult = ref(600);
+const value = ref(bestResult.value);
+if (bestResult.value <= 50) {
+  max.value = 150;
+} else if (bestResult.value <= 100) {
+  max.value = 300;
+  value.value = bestResult.value * 1.5;
+} else if (bestResult.value <= 200) {
+  max.value = 800;
+  value.value = 400 + (bestResult.value - 67);
+} else if (bestResult.value <= 500){
+    max.value = 1800
+    value.value = 1200 + (bestResult.value - 100) 
+} 
+// Последняя.
+else {
+    max.value = 1800
+    value.value = 1400 + (bestResult.value - 550) 
+}
 </script>
 <template>
   <main class="main">
-    <!-- <progress class="progress" :value="value"  max="100"></progress> -->
     <progress
       :value="value"
-      max="1000"
+      :max="max"
       class="progress"
       id="progress"
     ></progress>
-    <label for="control-progress" :labelVideo="labelVideo" id="label">{{
-      labelVideo
-    }}</label>
+    <div class="proverka">
+      <div></div>
+    </div>
     <p>
-      <video
-        id="control"
-        class="video-player"
-        ref="video"
-        v-on:timeupdate="handleTimeupdate"
-        src="../assets/(HiFiMov.co)_1000-second-countdown-timer.mp4"
-        controls
-      ></video>
+      <input
+        type="range"
+        :value="inputValue"
+        @input="addPoints"
+        max="1200"
+        aria-label="idk"
+      />
     </p>
   </main>
 </template>
 <style lang="scss">
 .main {
   width: 100%;
+}
+.proverka {
+  width: 900px;
+  height: 20px;
+  background-color: red;
+  margin: 0 auto;
+  box-sizing: content-box;
+  div {
+    width: 66.6666%;
+    height: 100%;
+    background-color: blue;
+  }
 }
 .progress::-moz-progress-bar {
   background: blue;
@@ -49,13 +69,16 @@ const handleTimeupdate = () => {
   max-width: 100%;
   height: 40px;
   outline: none;
-  padding: 0 20px;
+  //   padding: 0 20px;
   border: none;
   background: rgba(239, 239, 239, 0.6);
   border-radius: 30px;
 }
 #label {
   display: block;
+}
+input[type="range"] {
+  width: 55.9%;
 }
 .video-player {
   max-height: 24px;
