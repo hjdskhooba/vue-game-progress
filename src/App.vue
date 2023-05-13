@@ -3,12 +3,13 @@
 <template>
   <nav>
     <router-link to="/">My Progress</router-link> |
-    <router-link to="/document">Documentation</router-link>
+    <router-link to="/document">Documentation</router-link> |
+    <button>Next Theme</button>
   </nav>
   <router-view />
 </template>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,6 +26,22 @@
   overflow: hidden;
   padding: 0 20px;
   overflow-y: auto;
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: pointer;
+    &:active {
+      cursor: default;
+      color: #42b983;
+    }
+    &::after {
+      content: "☼";
+      padding-left: 2px;
+    }
+  }
 }
 * {
   padding: 0;
