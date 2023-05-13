@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
+// import { KeepAlive } from "vue";
 import Progress from "../components/Progress.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: Progress,
+    component: (
+      // <KeepAlive>
+      <Progress />
+      // </KeepAlive>
+    ),
   },
   {
     path: "/document",

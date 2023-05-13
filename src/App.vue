@@ -23,6 +23,8 @@
   height: 100vh;
   max-height: 100%;
   overflow: hidden;
+  padding: 0 20px;
+  overflow-y: auto;
 }
 * {
   padding: 0;

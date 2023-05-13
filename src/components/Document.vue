@@ -1,2 +1,2 @@
 <script setup></script>
-<template>Simple game progress bar example</template>
+<template>Welcome to an example of game player progress bar</template>

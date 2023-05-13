@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
+import { progressModule } from "./ProgressModule";
 
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  isAuth: false,
+  modules: {
+    progress: progressModule,
+  },
 });
