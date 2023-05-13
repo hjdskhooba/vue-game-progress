@@ -1,5 +1,9 @@
+import BarModule from "./BarModule.js";
+
 export const progressModule = {
   state: {
+    games: null,
+    points: 0,
     stages: [
       {
         name: "Этап первый",
@@ -8,7 +12,7 @@ export const progressModule = {
         games: [
           {
             name: "Игра 1.1",
-            bestResult: 21,
+            bestResult: 0,
             isPlayed: false,
           },
         ],
@@ -80,18 +84,22 @@ export const progressModule = {
       },
     ],
   },
+
   getters: {
-    result: (state) => {
-      //   for (let i = 0; i < state.stages.length; i++) {
-      //     for (let j = 0; j < state.stages[i].length; j++) {
-      //       return state.stages[i]
-      //     }
-      //   }
-      //   state.stages.map((stage) => stage.game.bestResult);
-      return state.stages[0].games[0].bestResult;
+    calculatedPoints(state) {
+      return state.stages.reduce((totalPoints, stage) => {
+        const game = stage.games[0];
+        return totalPoints + game.bestResult;
+      }, 0);
     },
   },
-  mutations: {},
-  actions: {},
-  modules: {},
+  mutations: {
+    // Not done yet
+    updatePoints(state, value) {
+      return (state.points = value);
+    },
+  },
+  modules: {
+    bar: BarModule,
+  },
 };
