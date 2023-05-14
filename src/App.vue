@@ -11,7 +11,7 @@ const currentTheme = computed(() => store.state.currentTheme);
   <div :class="'wrapper' + ' ' + currentTheme">
     <nav>
       <router-link to="/">My Progress</router-link> |
-      <router-link to="/document">Documentation</router-link> |
+      <router-link to="/document">See Docs</router-link> |
       <button @click="changeTheme">Next Theme</button>
     </nav>
     <router-view />
