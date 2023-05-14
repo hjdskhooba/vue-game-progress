@@ -66,10 +66,10 @@ const currentTheme = computed(() => store.state.currentTheme);
   &.second {
     background-image: url("@/assets/Modern\ -\ 2.svg");
     h1 {
-      color: white;
-      -webkit-text-fill-color: rgb(255, 255, 255);
+      color: black;
+      -webkit-text-fill-color: rgb(000, 000, 000);
     }
-    span{
+    span {
       color: white;
     }
   }
