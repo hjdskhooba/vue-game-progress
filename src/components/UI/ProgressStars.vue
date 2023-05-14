@@ -4,30 +4,51 @@ export default {
 };
 </script>
 <script setup>
-const points = defineProps({ points: Number });
-// Здесь короче будут условия
-console.log(points);
+import { ref } from "vue";
+
+const props = defineProps({ points: Number, k: Number });
+const someStar = (max) => (props.points >= max ? true : false);
+const stars = ref([
+  {
+    id: 1,
+    isAchieved: someStar(25),
+  },
+  {
+    id: 2,
+    isAchieved: someStar(50),
+  },
+  {
+    id: 3,
+    isAchieved: someStar(100),
+  },
+  {
+    id: 4,
+    isAchieved: someStar(200),
+  },
+  {
+    id: 5,
+    isAchieved: someStar(500),
+  },
+]);
 </script>
 <template>
-  <div :class="$style.container">
+  <div :key="k" :class="$style.container">
     <div :class="$style.progress__stars">
-      <div :class="$style.progress_star">
-        <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
-      </div>
-      <div :class="$style.progress_star">
-        <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
-      </div>
-      <div :class="$style.progress_star">
-        <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
-      </div>
-      <div :class="$style.progress_star">
-        <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
-      </div>
-      <div :class="$style.progress_star">
+      <div
+        v-for="star in stars"
+        :key="star.id"
+        :class="
+          star.isAchieved ? $style.progress_star_active : $style.progress_star
+        "
+      >
         <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
       </div>
     </div>
-    <div :class="$style.progress_last">
+    <div
+      :class="
+        points >= 1000 ? $style.progress_last.active : $style.progress_last
+      "
+    >
       <img src="../../assets/star.svg" :class="$style.star_img" alt="" />
     </div>
   </div>
@@ -78,6 +99,11 @@ console.log(points);
         width: 3.5vw;
         height: 3.5vw;
       }
+    }
+  }
+  .progress_star_active {
+    img {
+      filter: blur(4px);
     }
   }
 }

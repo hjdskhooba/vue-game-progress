@@ -1,12 +1,21 @@
-<script setup></script>
+<script setup>
+import { mapActions, mapState } from "@/utils/mapHelpers";
+import { computed } from "vue";
+import { useStore } from "vuex";
+const { changeTheme } = mapActions();
+const store = useStore();
+const currentTheme = computed(() => store.state.currentTheme);
+</script>
 
 <template>
-  <nav>
-    <router-link to="/">My Progress</router-link> |
-    <router-link to="/document">Documentation</router-link> |
-    <button>Next Theme</button>
-  </nav>
-  <router-view />
+  <div :class="'wrapper' + ' ' + currentTheme">
+    <nav>
+      <router-link to="/">My Progress</router-link> |
+      <router-link to="/document">Documentation</router-link> |
+      <button @click="changeTheme">Next Theme</button>
+    </nav>
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
@@ -18,13 +27,11 @@
   width: 100%;
   height: 100%;
   color: #2c3e50;
-  background-image: url("./assets/Modern\ -\ 1.svg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
   max-height: 100%;
   overflow: hidden;
-  padding: 0 20px;
   overflow-y: auto;
   button {
     background-color: transparent;
@@ -40,6 +47,38 @@
     &::after {
       content: "☼";
       padding-left: 2px;
+    }
+  }
+}
+.wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 100%;
+  // padding: 190.9px 0 0;
+  height: 100%;
+  max-height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  &.first {
+    background-image: url("@/assets/Modern\ -\ 1.svg");
+  }
+  &.second {
+    background-image: url("@/assets/Modern\ -\ 2.svg");
+    h1 {
+      color: white;
+      -webkit-text-fill-color: rgb(255, 255, 255);
+    }
+    span{
+      color: white;
+    }
+  }
+  &.third {
+    background-image: url("@/assets/Modern\ -\ 4.svg");
+    -webkit-text-fill-color: rgb(255, 183, 0);
+    filter: brightness(0.8);
+    nav a.router-link-exact-active {
+      color: #000000;
     }
   }
 }

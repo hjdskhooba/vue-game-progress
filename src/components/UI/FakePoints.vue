@@ -5,9 +5,9 @@ export default {
 </script>
 <script setup>
 // если что сделаю mutation в vuex
-const emit = defineEmits(["update:points"]);
+const emit = defineEmits(["upd"]);
 const changeTotalPoints = (e) => {
-  emit("update:points", +e.target.value);
+  emit("upd", +e.target.value);
 };
 </script>
 <template>
@@ -22,6 +22,8 @@ const changeTotalPoints = (e) => {
 </template>
 <style lang="scss" module scoped>
 input {
+  position: relative;
+  z-index: 100;
   width: 55.9%;
   margin: 10px auto 0;
   padding: 4.2221px 20.2221px;

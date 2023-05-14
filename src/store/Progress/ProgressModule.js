@@ -12,7 +12,7 @@ export const progressModule = {
         games: [
           {
             name: "Игра 1.1",
-            bestResult: 0,
+            bestResult: 2,
             isPlayed: false,
           },
         ],
