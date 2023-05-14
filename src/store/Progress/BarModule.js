@@ -5,7 +5,6 @@ export default {
   },
   actions: {
     getProgress({ state }, points) {
-      // Сделаю мутации для max и progressValue
       if (points <= 50) {
         state.max = 150;
         state.progressValue = points;
