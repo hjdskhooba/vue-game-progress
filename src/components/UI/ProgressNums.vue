@@ -5,29 +5,35 @@ export default {
 </script>
 <script setup>
 const props = defineProps({ totalPoints: Number });
-// Здесь нужен computed !
+const calcPoints = (to, from) => {
+  let ppoints = props.totalPoints;
+  if (ppoints <= to && ppoints > from) {
+    return ppoints + "/" + to;
+  } else {
+    return to;
+  }
+};
 </script>
 <template>
   <div :class="$style.progress__numbers">
     <span :class="$style.progress__numbers_number">0</span>
     <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 25 ? totalPoints + "/25" : "25"
-    }}</span>
-    <!-- Здесь еще нужно поработать, сократить код -->
-    <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 50 && totalPoints > 25 ? totalPoints + "/50" : "50"
+      totalPoints <= 25 ? totalPoints + "/25" : 25
     }}</span>
     <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 100 && totalPoints > 50 ? totalPoints + "/100" : "100"
+      calcPoints(50, 25)
     }}</span>
     <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 200 && totalPoints > 100 ? totalPoints + "/200" : "200"
+      calcPoints(100, 50)
     }}</span>
     <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 500 && totalPoints > 200 ? totalPoints + "/500" : "500"
+      calcPoints(200, 100)
     }}</span>
     <span :class="$style.progress__numbers_number">{{
-      totalPoints <= 1000 && totalPoints > 500 ? totalPoints + "/1000" : "1000"
+      calcPoints(500, 200)
+    }}</span>
+    <span :class="$style.progress__numbers_number">{{
+      calcPoints(1000, 500)
     }}</span>
   </div>
 </template>

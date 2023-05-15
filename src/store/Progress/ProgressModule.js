@@ -12,7 +12,7 @@ export const progressModule = {
         games: [
           {
             name: "Игра 1.1",
-            bestResult: 2,
+            bestResult: 20,
             isPlayed: false,
           },
         ],
@@ -94,7 +94,6 @@ export const progressModule = {
     },
   },
   mutations: {
-    // Not done yet
     updatePoints(state, value) {
       return (state.points = value);
     },

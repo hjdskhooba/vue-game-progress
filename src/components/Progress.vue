@@ -3,9 +3,9 @@ import { mapGetters } from "@/utils/mapHelpers";
 import { ref, watch } from "vue";
 const { calculatedPoints } = mapGetters();
 const inputValue = ref(0);
+const rerender = ref(0);
 const points = ref(calculatedPoints.value);
 watch(inputValue, (val) => (points.value = val));
-const rerender = ref(0);
 const changePoints = (event) => {
   inputValue.value = event;
   rerender.value += 1;

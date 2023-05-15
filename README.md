@@ -1,19 +1,11 @@
 # game-player-progress
 
-## Project setup
-```
-pnpm install
-```
+[Documentation](https://github.com/hjdskhooba/vue-game-progress-docs)
 
-### Compiles and hot-reloads for development
-```
-pnpm run serve
-```
+The production [app](https://vue-game-progress.vercel.app/)
 
-### Compiles and minifies for production
-```
-pnpm run build
-```
+Created for [МассПроект](https://github.com/MassProject?tab=overview&from=2023-05-01&to=2023-05-14)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Creator - Baigeldy
+
+Feel free to contact )

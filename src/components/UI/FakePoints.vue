@@ -4,14 +4,12 @@ export default {
 };
 </script>
 <script setup>
-// если что сделаю mutation в vuex
 const emit = defineEmits(["upd"]);
 const changeTotalPoints = (e) => {
   emit("upd", +e.target.value);
 };
 </script>
 <template>
-  <!-- Пока еще не получаеться сделать инпут так что оставлю его на самый конец, не трогай просто пожалуйсто. -->
   <p>
     <input
       type="number"
